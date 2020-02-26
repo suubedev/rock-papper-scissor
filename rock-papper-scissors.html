@@ -1,0 +1,80 @@
+<script>
+    function computerPlay() {
+        let randomSelection = Math.floor(Math.random() * 3)
+        let computerSelection;
+        if (randomSelection == 0) {
+            computerSelection = "Rock";
+        } else if (randomSelection == 1) {
+            computerSelection = "Paper";
+        } else {
+            computerSelection = "Scissor";
+        }
+
+        return computerSelection;
+    }
+
+    function playerPlay() {
+        let playerChoice = prompt("Please pick Rock, Paper or Scissor");
+        return playerChoice;
+    }
+
+    function playRound (playerSelection,computerSelection) {
+        if (playerSelection == "Rock") {
+            if (computerSelection == "Paper") {
+                return "You Lose! Paper Beats Rock!";
+            } else if (computerSelection == "Scissor") {
+                return "Good Job! Rock beats Scissor!";
+            } else {
+                return "It's a tie!"
+            }
+        } else if (playerSelection == "Paper") {
+            if (computerSelection == "Scissor") {
+                return "You Lose! Scissor Beats Paper!";
+            } else if (computerSelection == "Rock") {
+                return "Good Job! Paper beats Rock!";
+            } else {
+                return "It's a tie!"
+            }
+        } else {
+            if (computerSelection == "Scissor") {
+                return "You Lose! Rock Beats Scissor!";
+            } else if (computerSelection == "Paper") {
+                return "Good Job! Scissor beats Paper!";
+            } else {
+                return "It's a tie!"
+            }
+        }
+    }
+
+    function game() {
+        let playerScore = 0;
+        let computerScore = 0;
+        let gameScore;
+        let gameResult;
+        
+        for (gameScore = 0; gameScore < 5; gameScore++) {
+            let winnerPoint = playRound(playerPlay(),computerPlay());
+            if (winnerPoint.includes("Good")) {
+                playerScore++;
+                console.log(winnerPoint);
+            } else if (winnerPoint.includes("Lose")) {
+                computerScore++;
+                console.log(winnerPoint);
+            } else {
+                console.log(winnerPoint);
+            }
+        }
+
+        if (playerScore > computerScore) {
+            gameResult = "Congrats! You won the Battle!"
+        }  else if (playerScore == computerScore) {
+            gameResult = "Wow you guys tied!"
+            } else {
+            gameResult = "You lost this time, do better next time!"
+        }
+
+        return gameResult;
+    }
+
+    console.log(game());
+</script>
